@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItemToInventory(GameObject item)
     {
-        if (playerItems.Count >= inventorySpace) return;
+        //if (playerItems.Count >= inventorySpace) return;
 
         playerItems.Add(item);
     }
