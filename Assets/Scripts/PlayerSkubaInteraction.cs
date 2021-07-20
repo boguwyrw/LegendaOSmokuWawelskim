@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSkubaInteraction : MonoBehaviour
 {
     int itemLayerMask = 1 << 8;
-    float rangeToItem = 3.2f;
+    float rangeToItem = 4.2f;
 
     void FixedUpdate()
     {

@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour
     #endregion
 
     [SerializeField] GameObject inventoryGO;
+    [SerializeField] GameObject playerPointGO;
     
     List<GameObject> playerItems = new List<GameObject>();
     List<Image> inventoryIcons = new List<Image>();
@@ -45,11 +46,13 @@ public class Inventory : MonoBehaviour
         {
             inventoryGO.SetActive(true);
             Cursor.visible = true;
+            playerPointGO.SetActive(false);
         }
         else
         {
             inventoryGO.SetActive(false);
             Cursor.visible = false;
+            playerPointGO.SetActive(true);
         }
     }
 
@@ -57,7 +60,7 @@ public class Inventory : MonoBehaviour
     {
         if (playerItems.Count >= inventorySpace) return;
 
-        inventoryIcons[slotNumber].sprite = item.transform.GetChild(0).GetComponent<Image>().sprite;
+        inventoryIcons[slotNumber].sprite = item.GetComponent<Image>().sprite;
         inventoryIcons[slotNumber].GetComponent<Button>().interactable = true;
         playerItems.Add(item);
 
