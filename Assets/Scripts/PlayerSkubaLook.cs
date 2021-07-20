@@ -6,7 +6,7 @@ public class PlayerSkubaLook : MonoBehaviour
 {
     float sensitivity = 130.0f;
     float playerXRotation = 0.0f;
-    float rotationRange = 65.0f;
+    float rotationRange = 55.0f;
 
     void Start()
     {
