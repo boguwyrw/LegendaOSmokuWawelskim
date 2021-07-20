@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSkubaInteraction : MonoBehaviour
 {
     int itemLayerMask = 1 << 8;
+    float rangeToItem = 3.2f;
 
     void FixedUpdate()
     {
@@ -13,7 +14,9 @@ public class PlayerSkubaInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, itemLayerMask))
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            float distanceToItem = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
+            //Debug.Log(distanceToItem);
+            if (distanceToItem <= rangeToItem && Input.GetKeyDown(KeyCode.F))
             {
                 Inventory.Instance.AddItemToInventory(raycastHit.collider.gameObject);
                 raycastHit.collider.gameObject.SetActive(false);
