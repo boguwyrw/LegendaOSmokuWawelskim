@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1275179678353499242}
   - component: {fileID: 5991391575715480295}
   - component: {fileID: 8033526760220900727}
+  - component: {fileID: 6290464812152854014}
+  - component: {fileID: 1862887271163852310}
   m_Layer: 8
   m_Name: Cauldron
   m_TagString: Untagged
@@ -142,3 +144,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6290464812152854014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122093694034352441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f152d2d0bb9f7c448ba47048b67fd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionObject: {fileID: 11400000, guid: 65034ae90abd62a4084f675803639f9a, type: 2}
+  requireName: 
+  objectCanInteract: 0
+  objectPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1862887271163852310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122093694034352441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8ed86ee9a80ea4ab24f10897140384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnGrate: 0

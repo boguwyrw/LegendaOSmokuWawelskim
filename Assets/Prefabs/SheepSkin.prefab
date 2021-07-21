@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8560382085561456736}
   - component: {fileID: 8560382085561456737}
   - component: {fileID: 8560382085561456738}
-  - component: {fileID: 9087098655893024824}
+  - component: {fileID: 4670766112272138820}
+  - component: {fileID: 5207942401688421729}
   m_Layer: 8
   m_Name: SheepSkin
   m_TagString: Untagged
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9087098655893024824
+--- !u!114 &4670766112272138820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,6 +153,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8560382085561456739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ec75bb5646158e40b59313141b38c9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 08db05901a7bc3f4cb9e346112471972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnTable: 0
+--- !u!114 &5207942401688421729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8560382085561456739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f152d2d0bb9f7c448ba47048b67fd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionObject: {fileID: 11400000, guid: 9eaab2a8305fe294f8f7218e8ceae280, type: 2}
+  requireName: 
+  objectCanInteract: 0
+  objectPosition: {x: 0, y: 0, z: 0}

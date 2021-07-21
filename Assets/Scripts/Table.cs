@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Table : MonoBehaviour
 {
-    [SerializeField] GameObject sheepSkin;
+    [SerializeField] GameObject sheepSkinGO;
 
     private bool startInteraction = false;
 
@@ -15,9 +15,10 @@ public class Table : MonoBehaviour
         if (startInteraction)
         {
             Vector3 positionOnTable = new Vector3(GetComponent<Interaction>().objectPosition.x, GetComponent<Interaction>().objectPosition.y+0.52f, GetComponent<Interaction>().objectPosition.z);
-            sheepSkin.SetActive(true);
-            sheepSkin.transform.position = positionOnTable;
-            sheepSkin.layer = 9;
+            sheepSkinGO.SetActive(true);
+            sheepSkinGO.transform.position = positionOnTable;
+            sheepSkinGO.layer = 9;
+            sheepSkinGO.GetComponent<SheepSkin>().isOnTable = true;
         }
     }
 }

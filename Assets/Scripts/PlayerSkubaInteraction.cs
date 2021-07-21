@@ -6,7 +6,8 @@ public class PlayerSkubaInteraction : MonoBehaviour
 {
     int itemLayerMask = 1 << 8;
     int interactionLayerMask = 1 << 9;
-    float rangeToItem = 4.5f;
+    float rangeToItem = 5.2f;
+    //string nameRequire;
 
     void FixedUpdate()
     {
@@ -38,13 +39,15 @@ public class PlayerSkubaInteraction : MonoBehaviour
                         {
                             raycastHit.collider.gameObject.GetComponent<Interaction>().objectCanInteract = true;
                             Inventory.Instance.RemoveItemFromInventory(Inventory.Instance.playerItemsName[i]);
-                        }
-                    }
+                            listLength = Inventory.Instance.playerItemsName.Count;
 
-                    if (Inventory.Instance.inventoryIcons[i].sprite != null && Inventory.Instance.inventoryIcons[i].sprite.name.Equals(nameRequire) && Input.GetKeyDown(KeyCode.F))
-                    {
-                        //Inventory.Instance.itemIndexForRemove = i;
-                        Inventory.Instance.inventoryIcons[i].sprite = null;
+                            int iconsLength = Inventory.Instance.inventoryIcons.Count;
+                            for (int j = 0; j < iconsLength; j++)
+                            {
+                                if (Inventory.Instance.inventoryIcons[j].sprite != null && Inventory.Instance.inventoryIcons[j].sprite.name.Equals(nameRequire))
+                                    Inventory.Instance.inventoryIcons[j].sprite = null;
+                            }
+                        }
                     }
                 }
             }   
