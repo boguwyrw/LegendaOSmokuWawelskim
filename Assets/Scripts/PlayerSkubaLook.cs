@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSkubaLook : MonoBehaviour
 {
-    float sensitivity = 80.0f;
+    float sensitivity = 50.0f;
     float playerXRotation = 0.0f;
     float rotationRange = 55.0f;
 

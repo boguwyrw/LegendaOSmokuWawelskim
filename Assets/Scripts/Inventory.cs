@@ -23,6 +23,9 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public int itemIndexForRemove;
     [HideInInspector] public List<Image> inventoryIcons = new List<Image>();
 
+    public GameObject sheepToStuffGO;
+    public GameObject stuffedSheepGO;
+
     Transform inventorySlots;
     int inventorySpace = 5;
     int slotNumber = 0;
@@ -60,11 +63,21 @@ public class Inventory : MonoBehaviour
     {
         if (playerItemsName.Count >= inventorySpace) return;
 
-        inventoryIcons[slotNumber].sprite = item.GetComponent<Image>().sprite;
-
         playerItemsName.Add(item);
 
-        slotNumber += 1;
+        for (int i = 0; i < inventoryIcons.Count; i++)
+        {
+            if (inventoryIcons[i].sprite == null)
+            {
+                inventoryIcons[i].sprite = item.GetComponent<Image>().sprite;
+                return;
+            }
+        }
+        //inventoryIcons[slotNumber].sprite = item.GetComponent<Image>().sprite;
+
+        //playerItemsName.Add(item);
+
+        //slotNumber += 1;
     }
 
     public void RemoveItemFromInventory(GameObject item)

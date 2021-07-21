@@ -6,8 +6,11 @@ public class PlayerSkubaInteraction : MonoBehaviour
 {
     int itemLayerMask = 1 << 8;
     int interactionLayerMask = 1 << 9;
-    float rangeToItem = 5.2f;
+    int stuffLayerMask = 1 << 10;
+    float rangeToItem = 5.4f;
     //string nameRequire;
+
+    [HideInInspector] public bool isInPoint = false;
 
     void FixedUpdate()
     {
@@ -51,6 +54,41 @@ public class PlayerSkubaInteraction : MonoBehaviour
                     }
                 }
             }   
+        }
+
+        if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, stuffLayerMask))
+        {
+            if (raycastHit.collider.transform.parent != null)
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    Inventory.Instance.sheepToStuffGO.SetActive(false);
+                    Inventory.Instance.stuffedSheepGO.SetActive(true);
+
+                }
+            }
+                
+        }
+
+        //if (isInPoint && Input.GetKeyDown(KeyCode.F))
+        if (isInPoint)
+        {
+            int listLength = Inventory.Instance.playerItemsName.Count;
+            for (int i = 0; i < listLength; i++)
+            {
+                if (Inventory.Instance.playerItemsName[i].name.Equals("StuffedSheep"))
+                {
+                    Inventory.Instance.RemoveItemFromInventory(Inventory.Instance.playerItemsName[i]);
+                    listLength = Inventory.Instance.playerItemsName.Count;
+
+                    int iconsLength = Inventory.Instance.inventoryIcons.Count;
+                    for (int j = 0; j < iconsLength; j++)
+                    {
+                        if (Inventory.Instance.inventoryIcons[j].sprite != null && Inventory.Instance.inventoryIcons[j].sprite.name.Equals("StuffedSheep"))
+                            Inventory.Instance.inventoryIcons[j].sprite = null;
+                    }
+                }
+            }
         }
     }
 }

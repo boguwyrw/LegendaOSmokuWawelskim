@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6792512919770167173}
   - component: {fileID: 6792512919770167174}
   - component: {fileID: 6792512919770167162}
+  - component: {fileID: 5062074617351279805}
   - component: {fileID: 6792512919770167161}
   m_Layer: 6
   m_Name: PlayerSkuba
@@ -109,6 +110,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb619857b0d779b409f18c2b7d4e9432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5062074617351279805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792512919770167175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965584265d8bb3448bb7c271f5ae6f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!54 &6792512919770167161
@@ -236,3 +249,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c694f61c3acad49ba75964052e472b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInPoint: 0

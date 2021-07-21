@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bonfire : MonoBehaviour
 {
-    [SerializeField] private GameObject fire;
+    [SerializeField] GameObject fire;
 
-    private bool startInteraction = false;
+    bool startInteraction = false;
 
     void Start()
     {

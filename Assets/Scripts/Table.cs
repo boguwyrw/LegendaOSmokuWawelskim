@@ -6,7 +6,7 @@ public class Table : MonoBehaviour
 {
     [SerializeField] GameObject sheepSkinGO;
 
-    private bool startInteraction = false;
+    bool startInteraction = false;
 
     void Update()
     {
@@ -19,6 +19,7 @@ public class Table : MonoBehaviour
             sheepSkinGO.transform.position = positionOnTable;
             sheepSkinGO.layer = 9;
             sheepSkinGO.GetComponent<SheepSkin>().isOnTable = true;
+            sheepSkinGO.transform.parent = Inventory.Instance.sheepToStuffGO.transform;
         }
     }
 }
