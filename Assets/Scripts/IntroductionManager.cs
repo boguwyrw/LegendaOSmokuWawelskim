@@ -8,6 +8,7 @@ public class IntroductionManager : MonoBehaviour
 {
     [SerializeField] private Image titleImage;
     [SerializeField] private GameObject buttonsController;
+    [SerializeField] private Button skipButton;
 
     private AudioSource audioSource;
     private AudioClip introductionClip;
@@ -55,5 +56,13 @@ public class IntroductionManager : MonoBehaviour
     public void ExitButton()
     {
         Application.Quit();
+    }
+
+    public void SkipButton()
+    {
+        audioSource.Stop();
+        titleImage.gameObject.SetActive(false);
+        buttonsController.SetActive(true);
+        skipButton.gameObject.SetActive(false);
     }
 }

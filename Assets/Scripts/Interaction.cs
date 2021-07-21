@@ -8,9 +8,11 @@ public class Interaction : MonoBehaviour
 
     [HideInInspector] public string requireName;
     [HideInInspector] public bool objectCanInteract;
+    [HideInInspector] public Vector3 objectPosition;
 
     void Start()
     {
         requireName = interactionObject.requireObjectName;
+        objectPosition = transform.position;
     }
 }
