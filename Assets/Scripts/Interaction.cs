@@ -7,6 +7,7 @@ public class Interaction : MonoBehaviour
     [SerializeField] InteractionObject interactionObject;
 
     [HideInInspector] public string requireName;
+    [HideInInspector] public bool objectCanInteract;
 
     void Start()
     {

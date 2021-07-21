@@ -36,21 +36,16 @@ public class PlayerSkubaInteraction : MonoBehaviour
                     {
                         if (Input.GetKeyDown(KeyCode.F))
                         {
-                            Debug.Log("WE HIT");
-
+                            raycastHit.collider.gameObject.GetComponent<Interaction>().objectCanInteract = true;
                             Inventory.Instance.RemoveItemFromInventory(Inventory.Instance.playerItemsName[i]);
-                            /*
-                            for (int j = 0; j < Inventory.Instance.inventoryIcons.Count; j++)
-                            {
-                                if (Inventory.Instance.inventoryIcons[j].sprite.name.Equals(nameRequire))
-                                    Inventory.Instance.itemIndexForRemove = j;
-                            }
-                            */
                         }
                     }
 
                     if (Inventory.Instance.inventoryIcons[i].sprite != null && Inventory.Instance.inventoryIcons[i].sprite.name.Equals(nameRequire) && Input.GetKeyDown(KeyCode.F))
-                        Inventory.Instance.itemIndexForRemove = i;
+                    {
+                        //Inventory.Instance.itemIndexForRemove = i;
+                        Inventory.Instance.inventoryIcons[i].sprite = null;
+                    }
                 }
             }   
         }
