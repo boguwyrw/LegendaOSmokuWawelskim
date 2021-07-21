@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerSkubaInteraction : MonoBehaviour
 {
     int itemLayerMask = 1 << 8;
-    float rangeToItem = 4.2f;
+    int interactionLayerMask = 1 << 9;
+    float rangeToItem = 4.5f;
 
     void FixedUpdate()
     {
@@ -15,12 +16,43 @@ public class PlayerSkubaInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, itemLayerMask))
         {
             float distanceToItem = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
-            //Debug.Log(distanceToItem);
             if (distanceToItem <= rangeToItem && Input.GetKeyDown(KeyCode.F))
             {
                 Inventory.Instance.AddItemToInventory(raycastHit.collider.gameObject);
                 raycastHit.collider.gameObject.SetActive(false);
             }
+        }
+
+        if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, interactionLayerMask))
+        {
+            float distanceToInteraction = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
+            if (distanceToInteraction <= rangeToItem)
+            {
+                int listLength = Inventory.Instance.playerItemsName.Count;
+                for (int i = 0; i < listLength; i++)
+                {
+                    string nameRequire = raycastHit.collider.gameObject.GetComponent<Interaction>().requireName;
+                    if (Inventory.Instance.playerItemsName[i].name.Equals(nameRequire))
+                    {
+                        if (Input.GetKeyDown(KeyCode.F))
+                        {
+                            Debug.Log("WE HIT");
+
+                            Inventory.Instance.RemoveItemFromInventory(Inventory.Instance.playerItemsName[i]);
+                            /*
+                            for (int j = 0; j < Inventory.Instance.inventoryIcons.Count; j++)
+                            {
+                                if (Inventory.Instance.inventoryIcons[j].sprite.name.Equals(nameRequire))
+                                    Inventory.Instance.itemIndexForRemove = j;
+                            }
+                            */
+                        }
+                    }
+
+                    if (Inventory.Instance.inventoryIcons[i].sprite != null && Inventory.Instance.inventoryIcons[i].sprite.name.Equals(nameRequire) && Input.GetKeyDown(KeyCode.F))
+                        Inventory.Instance.itemIndexForRemove = i;
+                }
+            }   
         }
     }
 }

@@ -11,7 +11,7 @@ public class PlayerSkubaLook : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()

@@ -18,9 +18,12 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] GameObject inventoryGO;
     [SerializeField] GameObject playerPointGO;
+    [SerializeField] IconButton[] iconsButtons;
     
-    List<GameObject> playerItems = new List<GameObject>();
-    List<Image> inventoryIcons = new List<Image>();
+    [HideInInspector] public List<GameObject> playerItemsName = new List<GameObject>();
+    [HideInInspector] public int itemIndexForRemove;
+    [HideInInspector] public List<Image> inventoryIcons = new List<Image>();
+
     Transform inventorySlots;
     int inventorySpace = 5;
     int slotNumber = 0;
@@ -45,30 +48,28 @@ public class Inventory : MonoBehaviour
         if (inventoryIsOpen)
         {
             inventoryGO.SetActive(true);
-            Cursor.visible = true;
-            playerPointGO.SetActive(false);
         }
         else
         {
             inventoryGO.SetActive(false);
-            Cursor.visible = false;
-            playerPointGO.SetActive(true);
         }
     }
 
     public void AddItemToInventory(GameObject item)
     {
-        if (playerItems.Count >= inventorySpace) return;
+        if (playerItemsName.Count >= inventorySpace) return;
 
         inventoryIcons[slotNumber].sprite = item.GetComponent<Image>().sprite;
-        inventoryIcons[slotNumber].GetComponent<Button>().interactable = true;
-        playerItems.Add(item);
+        //inventoryIcons[slotNumber].GetComponent<Button>().interactable = true;
+        
+        playerItemsName.Add(item);
 
         slotNumber += 1;
     }
 
-    public void RemoveItemToInventory(GameObject item)
+    public void RemoveItemFromInventory(GameObject item)
     {
-        playerItems.Remove(item);
+        inventoryIcons[itemIndexForRemove].sprite = null;
+        playerItemsName.Remove(item);
     }
 }
