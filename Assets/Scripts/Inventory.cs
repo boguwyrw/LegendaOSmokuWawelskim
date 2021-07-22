@@ -56,6 +56,12 @@ public class Inventory : MonoBehaviour
             inventoryGO.SetActive(false);
             playerPointGO.SetActive(true);
         }
+
+        if (Time.timeScale == 0.0f)
+        {
+            inventoryGO.SetActive(false);
+            playerPointGO.SetActive(false);
+        }
     }
 
     public void AddItemToInventory(GameObject item)

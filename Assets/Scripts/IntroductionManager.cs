@@ -11,14 +11,12 @@ public class IntroductionManager : MonoBehaviour
     [SerializeField] private Button skipButton;
 
     private AudioSource audioSource;
-    private AudioClip introductionClip;
 
     public static bool isFirstGame = true;
 
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        introductionClip = GetComponent<AudioSource>().clip;
 
         titleImage.gameObject.SetActive(true);
         buttonsController.SetActive(false);
@@ -30,6 +28,10 @@ public class IntroductionManager : MonoBehaviour
             titleImage.gameObject.SetActive(false);
             buttonsController.SetActive(true);
         }
+
+        Time.timeScale = 1.0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()

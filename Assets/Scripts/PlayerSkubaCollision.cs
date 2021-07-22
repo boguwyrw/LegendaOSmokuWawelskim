@@ -28,7 +28,7 @@ public class PlayerSkubaCollision : MonoBehaviour
                 if (Inventory.Instance.playerItemsName[i].name.Equals("StuffedSheep") && Input.GetKeyDown(KeyCode.F))
                 {
                     Inventory.Instance.stuffedSheepGO.SetActive(true);
-                    Inventory.Instance.stuffedSheepGO.transform.position = pointPosition; // daæ owcê trochê ni¿ej
+                    Inventory.Instance.stuffedSheepGO.transform.position = pointPosition;
                     Inventory.Instance.stuffedSheepGO.transform.rotation = pointRotation;
                     transform.GetChild(0).GetComponent<PlayerSkubaInteraction>().isInPoint = true;
                 }

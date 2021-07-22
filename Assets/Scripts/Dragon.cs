@@ -7,20 +7,41 @@ public class Dragon : MonoBehaviour
     [SerializeField] LeaveSheepInPoint leaveSheep;
     [SerializeField] Transform neckPoint;
     [SerializeField] Transform placeToDrink;
+    [SerializeField] Transform caveEnter;
 
     [HideInInspector] public bool sheepEaten = false;
+    [HideInInspector] public bool reachedSafePoint = false;
 
     float dragonRotationSpeed = 0.5f;
     float dragonMovementSpeed = 1.0f;
     bool canEatSheep = false;
     bool canGoToRiver = false;
     bool isInRiver = false;
+    bool reachedCaveEnterPoint = false;
 
     void Update()
     {
-        if (leaveSheep.sheepIsOnPlace && !sheepEaten)
+        if (leaveSheep.sheepIsOnPlace && !reachedCaveEnterPoint)
         {
-            DragonMovement(leaveSheep.gameObject.transform.position);
+            //DragonMovement(leaveSheep.gameObject.transform.position);
+            DragonMovement(caveEnter.position);
+
+            float distanceToPoint = Vector3.Distance(caveEnter.position, transform.position);
+            if (distanceToPoint < 5)
+            {
+                reachedCaveEnterPoint = true;
+            }
+        }
+
+        if (reachedCaveEnterPoint && !sheepEaten)
+        {
+            if (reachedSafePoint)
+                DragonMovement(leaveSheep.gameObject.transform.position);
+            else
+            {
+                Time.timeScale = 0.0f;
+                GameController.Instance.LoseGameController();
+            }
         }
 
         if (canEatSheep && !sheepEaten)
@@ -79,8 +100,16 @@ public class Dragon : MonoBehaviour
         {
             for (int i = 0; i < 2; i++)
             {
-                if (transform.GetChild(i).transform.localScale.x <= 3.0f)
-                    transform.GetChild(i).transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+                if (transform.GetChild(i).transform.localScale.x <= 2.7f)
+                    transform.GetChild(i).transform.localScale += new Vector3(0.001f, 0.001f, 0.001f);
+
+                if (transform.GetChild(i).transform.localScale.x > 2.7f)
+                {
+                    //transform.GetChild(i).GetComponent<Rigidbody>().isKinematic = false;
+                    //transform.GetChild(i).GetComponent<Rigidbody>().useGravity = true;
+                    GameController.Instance.WinGameController();
+                    Time.timeScale = 0.0f;
+                }
             }
         }
     }
