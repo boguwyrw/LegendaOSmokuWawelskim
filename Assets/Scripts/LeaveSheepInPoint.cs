@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class LeaveSheepInPoint : MonoBehaviour
 {
+    [HideInInspector] public bool sheepIsOnPlace = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6)
+        if (other.gameObject.name.Equals("StuffedSheep"))
         {
-            //other.transform.GetChild(0).GetComponent<PlayerSkubaInteraction>().isInPoint = true;
+            sheepIsOnPlace = true;
         }
     }
 }
