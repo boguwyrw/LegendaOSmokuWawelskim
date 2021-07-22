@@ -14,7 +14,8 @@ public class Table : MonoBehaviour
 
         if (startInteraction)
         {
-            Vector3 positionOnTable = new Vector3(GetComponent<Interaction>().objectPosition.x, GetComponent<Interaction>().objectPosition.y + 0.17f, GetComponent<Interaction>().objectPosition.z);
+            //Vector3 positionOnTable = new Vector3(GetComponent<Interaction>().objectPosition.x, GetComponent<Interaction>().objectPosition.y + 0.17f, GetComponent<Interaction>().objectPosition.z);
+            Vector3 positionOnTable = transform.GetChild(0).position;
             sheepSkinGO.SetActive(true);
             sheepSkinGO.transform.position = positionOnTable;
             sheepSkinGO.GetComponent<SheepSkin>().isOnTable = true;
