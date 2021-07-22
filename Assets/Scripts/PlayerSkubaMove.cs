@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSkubaMove : MonoBehaviour
 {
     float playerSpeed = 0.0f;
-    float sneakingSpeed = 2.8f;
+    float sneakingSpeed = 2.4f;
     float walkingSpeed = 6.0f;
     float runningSpeed = 13.0f;
 

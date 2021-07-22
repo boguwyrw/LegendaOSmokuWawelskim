@@ -14,6 +14,7 @@ public class Dragon : MonoBehaviour
     float dragonMovementSpeed = 1.0f;
     bool canEatSheep = false;
     bool canGoToRiver = false;
+    bool isInRiver = false;
 
     void Update()
     {
@@ -24,7 +25,7 @@ public class Dragon : MonoBehaviour
 
         if (canEatSheep && !sheepEaten)
         {
-            neckPoint.Rotate(0, 0, -16 * Time.deltaTime);
+            DragonLeansDown();
         }
 
         if (sheepEaten && !canGoToRiver)
@@ -37,6 +38,9 @@ public class Dragon : MonoBehaviour
         }
 
         DragonGoesToRiver();
+
+        if (isInRiver)
+            DragonDrinksWater();
     }
 
     void DragonMovement(Vector3 objectPosition)
@@ -50,13 +54,34 @@ public class Dragon : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, dragonRotation, dragonRotationSpeed * Time.deltaTime);
     }
 
+    void DragonLeansDown()
+    {
+        neckPoint.Rotate(0, 0, -16 * Time.deltaTime);
+        //Debug.Log("Angles.z: " + neckPoint.localEulerAngles.z);
+    }
+
     void DragonGoesToRiver()
     {
-        if (canGoToRiver)
+        if (canGoToRiver && !isInRiver)
         {
             dragonRotationSpeed = 0.5f;
             dragonMovementSpeed = 1.0f;
             DragonMovement(placeToDrink.position);
+        }
+    }
+
+    void DragonDrinksWater()
+    {
+        if (neckPoint.localEulerAngles.z >= 255.0f)
+            DragonLeansDown();
+        
+        if (neckPoint.localEulerAngles.z <= 255.0f)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                if (transform.GetChild(i).transform.localScale.x <= 3.0f)
+                    transform.GetChild(i).transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+            }
         }
     }
 
@@ -67,6 +92,13 @@ public class Dragon : MonoBehaviour
             dragonMovementSpeed = 0.0f;
             dragonRotationSpeed = 0.0f;
             canEatSheep = true;
+        }
+
+        if (other.gameObject.layer == 12)
+        {
+            dragonMovementSpeed = 0.0f;
+            dragonRotationSpeed = 0.0f;
+            isInRiver = true;
         }
     }
 }
