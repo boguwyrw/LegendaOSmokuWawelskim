@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerSkubaMove : MonoBehaviour
 {
     float playerSpeed = 0.0f;
-    float sneakingSpeed = 1.2f;
-    float walkingSpeed = 2.5f;
-    float runningSpeed = 6.0f;
+    float sneakingSpeed = 2.8f;
+    float walkingSpeed = 6.0f;
+    float runningSpeed = 13.0f;
 
     bool playerIsSneaking = false;
 

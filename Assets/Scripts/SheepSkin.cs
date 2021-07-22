@@ -7,6 +7,7 @@ public class SheepSkin : MonoBehaviour
     [HideInInspector] public bool isOnTable = false;
 
     [SerializeField] GameObject hotTarPref;
+    [SerializeField] Cauldron cauldron;
 
     bool startInteraction = false;
     bool hotTarCreated = false;
@@ -21,14 +22,17 @@ public class SheepSkin : MonoBehaviour
             sheepSkinPosition = transform.position;
             sheepSkinRotation = transform.rotation;
 
+            if (cauldron.tarIsHot)
+                gameObject.layer = 9;
+
             startInteraction = GetComponent<Interaction>().objectCanInteract;
             if (startInteraction && !hotTarCreated)
             {
                 hotTarPrefPosition = new Vector3(sheepSkinPosition.x, sheepSkinPosition.y + 0.05f, sheepSkinPosition.z);
-                GameObject hotTarClone =  Instantiate(hotTarPref, hotTarPrefPosition, sheepSkinRotation);
+                GameObject hotTarClone = Instantiate(hotTarPref, hotTarPrefPosition, sheepSkinRotation);
                 hotTarClone.transform.parent = Inventory.Instance.sheepToStuffGO.transform;
                 hotTarCreated = true;
             }
-        }
+        } 
     }
 }
