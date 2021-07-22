@@ -14,8 +14,6 @@ public class PlayerSkubaCollision : MonoBehaviour
         {
             pointPosition = other.transform.position;
             pointRotation = other.transform.rotation;
-            //Inventory.Instance.stuffedSheepGO.SetActive(true);
-            //Inventory.Instance.stuffedSheepGO.transform.position = pointPosition;
         }
     }
 
@@ -35,15 +33,6 @@ public class PlayerSkubaCollision : MonoBehaviour
                     transform.GetChild(0).GetComponent<PlayerSkubaInteraction>().isInPoint = true;
                 }
             }
-            /*
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                Inventory.Instance.stuffedSheepGO.SetActive(true);
-                Inventory.Instance.stuffedSheepGO.transform.position = pointPosition;
-                Inventory.Instance.stuffedSheepGO.transform.rotation = pointRotation;
-            }
-            transform.GetChild(0).GetComponent<PlayerSkubaInteraction>().isInPoint = true;
-            */
         }
     }
 

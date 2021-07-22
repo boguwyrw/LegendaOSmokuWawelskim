@@ -28,7 +28,6 @@ public class Inventory : MonoBehaviour
 
     Transform inventorySlots;
     int inventorySpace = 5;
-    int slotNumber = 0;
     bool inventoryIsOpen = false;
 
     void Start()
@@ -73,16 +72,10 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
-        //inventoryIcons[slotNumber].sprite = item.GetComponent<Image>().sprite;
-
-        //playerItemsName.Add(item);
-
-        //slotNumber += 1;
     }
 
     public void RemoveItemFromInventory(GameObject item)
     {
-        //inventoryIcons[itemIndexForRemove].sprite = null;
         playerItemsName.Remove(item);
     }
 }

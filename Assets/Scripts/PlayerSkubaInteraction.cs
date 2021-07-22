@@ -8,7 +8,6 @@ public class PlayerSkubaInteraction : MonoBehaviour
     int interactionLayerMask = 1 << 9;
     int stuffLayerMask = 1 << 10;
     float rangeToItem = 5.4f;
-    //string nameRequire;
 
     [HideInInspector] public bool isInPoint = false;
 
@@ -70,7 +69,6 @@ public class PlayerSkubaInteraction : MonoBehaviour
                 
         }
 
-        //if (isInPoint && Input.GetKeyDown(KeyCode.F))
         if (isInPoint)
         {
             int listLength = Inventory.Instance.playerItemsName.Count;

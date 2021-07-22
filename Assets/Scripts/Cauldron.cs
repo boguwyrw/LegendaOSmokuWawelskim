@@ -10,7 +10,6 @@ public class Cauldron : MonoBehaviour
     [SerializeField] GameObject fire;
 
     bool startInteraction = false;
-    float timeToHeatTar = 5.0f;
 
     void Update()
     {
@@ -18,15 +17,6 @@ public class Cauldron : MonoBehaviour
         {
             tarIsHot = true;
             InteractionWithCauldron();
-            /*
-            timeToHeatTar -= Time.deltaTime;
-
-            if (timeToHeatTar <= 0.0f)
-            {
-                tarIsHot = true;
-                InteractionWithCauldron();
-            }
-            */
         }
     }
 
@@ -36,6 +26,8 @@ public class Cauldron : MonoBehaviour
         if (startInteraction)
         {
             gameObject.layer = 8;
+            Inventory.Instance.AddItemToInventory(gameObject);
+            gameObject.SetActive(false);
             isOnGrate = false;
         }
     }
