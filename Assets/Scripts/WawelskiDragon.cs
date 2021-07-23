@@ -13,8 +13,8 @@ public class WawelskiDragon : MonoBehaviour
     [SerializeField] GameObject sneakingRangeGO;
     [SerializeField] GameObject walkingRangeGO;
     [SerializeField] GameObject runningRangeGO;
-    [SerializeField] Text cautionInfoText;
     [SerializeField] AudioClip dragonEating;
+    [SerializeField] Text cautionInfoText;
 
     [HideInInspector] public bool sheepEaten = false;
     [HideInInspector] public bool reachedSafePoint = false;
@@ -175,10 +175,12 @@ public class WawelskiDragon : MonoBehaviour
 
     void CautionInformation()
     {
-        foreach (Collider player in playerInSneakingRange)
-        {
+        playerInSneakingRange = Physics.OverlapSphere(transform.root.position, sneakingRange, playerLayerMask);
+
+        if (playerInSneakingRange.Length > 0 && Time.timeScale > 0.0f)
             cautionInfoText.gameObject.SetActive(true);
-        }
+        else
+            cautionInfoText.gameObject.SetActive(false);
     }
 
     void ContactWithDragon()
@@ -227,10 +229,9 @@ public class WawelskiDragon : MonoBehaviour
 
     void DragonDrinksWater()
     {
-        Debug.Log("Angles.x: " + neckPoint.localEulerAngles.x);
-        if (neckPoint.localEulerAngles.x < 23.75f || neckPoint.localEulerAngles.x > 24.25f)
+        if (neckPoint.localEulerAngles.x < 32.75f || neckPoint.localEulerAngles.x > 33.25f)
             DragonLeansDown();
-        else if (neckPoint.localEulerAngles.x <= 24.25f && neckPoint.localEulerAngles.x >= 23.75f)
+        else if (neckPoint.localEulerAngles.x <= 33.25f && neckPoint.localEulerAngles.x >= 32.75f)
             dragonIsDying = true;
         
         if (dragonIsDying)
