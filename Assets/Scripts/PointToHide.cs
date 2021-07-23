@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PointToHide : MonoBehaviour
 {
-    [SerializeField] Dragon dragon;
+    [SerializeField] WawelskiDragon wawelskiDragon;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 6)
         {
-            dragon.reachedSafePoint = true;
+            wawelskiDragon.reachedSafePoint = true;
         }
     }
 }

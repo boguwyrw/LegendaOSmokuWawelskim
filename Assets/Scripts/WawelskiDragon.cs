@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Dragon : MonoBehaviour
+public class WawelskiDragon : MonoBehaviour
 {
     [SerializeField] LeaveSheepInPoint leaveSheep;
     [SerializeField] Transform neckPoint;
     [SerializeField] Transform placeToDrink;
     [SerializeField] Transform caveEnter;
+    [SerializeField] Transform stomach;
     [SerializeField] GameObject sneakingRangeGO;
     [SerializeField] GameObject walkingRangeGO;
     [SerializeField] GameObject runningRangeGO;
+    [SerializeField] Text cautionInfoText;
+    [SerializeField] AudioClip dragonEating;
 
     [HideInInspector] public bool sheepEaten = false;
     [HideInInspector] public bool reachedSafePoint = false;
@@ -18,13 +22,14 @@ public class Dragon : MonoBehaviour
     AudioSource audioSource;
     float dragonRotationSpeed = 0.5f;
     float dragonMovementSpeed = 1.0f;
-    float wakeUpTime = 2.5f;
+    float wakeUpTime = 3.5f;
     bool canEatSheep = false;
     bool canGoToRiver = false;
     bool isInRiver = false;
     bool reachedCaveEnterPoint = false;
     bool dragonRoars = false;
     bool rangesGOAreVisible = false;
+    bool dragonIsDying = false;
     LayerMask playerLayerMask = 1 << 6;
     Collider[] playerInSneakingRange;
     Collider[] playerInWalkingRange;
@@ -47,10 +52,12 @@ public class Dragon : MonoBehaviour
 
     void Update()
     {
-        //HelpController();
+        HelpController();
 
         if (!reachedSafePoint)
             DragonHearRange();
+        else
+            CautionInformation();
 
         if (leaveSheep.sheepIsOnPlace && !reachedCaveEnterPoint)
         {
@@ -63,7 +70,7 @@ public class Dragon : MonoBehaviour
             {
                 DragonMovement(caveEnter.position);
 
-                float distanceToPoint = Vector3.Distance(caveEnter.position, transform.position);
+                float distanceToPoint = Vector3.Distance(caveEnter.position, transform.root.position);
                 if (distanceToPoint < 5)
                 {
                     reachedCaveEnterPoint = true;
@@ -77,8 +84,17 @@ public class Dragon : MonoBehaviour
                 DragonMovement(leaveSheep.gameObject.transform.position);
             else
             {
-                Time.timeScale = 0.0f;
-                GameController.Instance.LoseGameController();
+                if (!dragonRoars)
+                {
+                    audioSource.Play();
+                    dragonRoars = true;
+                }
+
+                if (!audioSource.isPlaying && dragonRoars)
+                {
+                    Time.timeScale = 0.0f;
+                    GameController.Instance.LoseGameController();
+                }
             }
         }
 
@@ -89,9 +105,14 @@ public class Dragon : MonoBehaviour
 
         if (sheepEaten && !canGoToRiver)
         {
-            neckPoint.Rotate(0, 0, 16 * Time.deltaTime);
-            if (neckPoint.localEulerAngles.z >= 315)
+            audioSource.clip = dragonEating;
+            audioSource.Play();
+
+            neckPoint.Rotate(-16 * Time.deltaTime, 0, 0);
+
+            if (neckPoint.localEulerAngles.x > 277.75f && neckPoint.localEulerAngles.x < 278.25f)
             {
+                neckPoint.localEulerAngles = new Vector3(278.0f, neckPoint.localEulerAngles.y, neckPoint.localEulerAngles.z);
                 canGoToRiver = true;
             }
         }
@@ -123,9 +144,9 @@ public class Dragon : MonoBehaviour
 
     void DragonHearRange()
     {
-        playerInSneakingRange = Physics.OverlapSphere(transform.position, sneakingRange, playerLayerMask);
-        playerInWalkingRange = Physics.OverlapSphere(transform.position, walkingRange, playerLayerMask);
-        playerInRunningRange = Physics.OverlapSphere(transform.position, runningRange, playerLayerMask);
+        playerInSneakingRange = Physics.OverlapSphere(transform.root.position, sneakingRange, playerLayerMask);
+        playerInWalkingRange = Physics.OverlapSphere(transform.root.position, walkingRange, playerLayerMask);
+        playerInRunningRange = Physics.OverlapSphere(transform.root.position, runningRange, playerLayerMask);
 
         foreach (Collider player in playerInSneakingRange)
         {
@@ -152,6 +173,14 @@ public class Dragon : MonoBehaviour
         }
     }
 
+    void CautionInformation()
+    {
+        foreach (Collider player in playerInSneakingRange)
+        {
+            cautionInfoText.gameObject.SetActive(true);
+        }
+    }
+
     void ContactWithDragon()
     {
         if (!dragonRoars)
@@ -172,18 +201,18 @@ public class Dragon : MonoBehaviour
 
     void DragonMovement(Vector3 objectPosition)
     {
-        transform.Translate(Vector3.forward * dragonMovementSpeed * Time.deltaTime);
+        transform.root.Translate(Vector3.forward * dragonMovementSpeed * Time.deltaTime);
         Vector3 position = objectPosition;
-        Vector3 direction = position - transform.position;
+        Vector3 direction = position - transform.root.position;
         Quaternion dragonRotation = Quaternion.LookRotation(direction);
         dragonRotation = new Quaternion(0, dragonRotation.y, 0, dragonRotation.w);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, dragonRotation, dragonRotationSpeed * Time.deltaTime);
+        transform.root.rotation = Quaternion.Lerp(transform.root.rotation, dragonRotation, dragonRotationSpeed * Time.deltaTime);
     }
 
     void DragonLeansDown()
     {
-        neckPoint.Rotate(0, 0, -16 * Time.deltaTime);
+        neckPoint.Rotate(16 * Time.deltaTime, 0, 0);
     }
 
     void DragonGoesToRiver()
@@ -198,21 +227,21 @@ public class Dragon : MonoBehaviour
 
     void DragonDrinksWater()
     {
-        if (neckPoint.localEulerAngles.z >= 255.0f)
+        Debug.Log("Angles.x: " + neckPoint.localEulerAngles.x);
+        if (neckPoint.localEulerAngles.x < 23.75f || neckPoint.localEulerAngles.x > 24.25f)
             DragonLeansDown();
+        else if (neckPoint.localEulerAngles.x <= 24.25f && neckPoint.localEulerAngles.x >= 23.75f)
+            dragonIsDying = true;
         
-        if (neckPoint.localEulerAngles.z <= 255.0f)
+        if (dragonIsDying)
         {
-            for (int i = 0; i < 2; i++)
-            {
-                if (transform.GetChild(i).transform.localScale.x <= 2.7f)
-                    transform.GetChild(i).transform.localScale += new Vector3(0.001f, 0.001f, 0.001f);
+            if (stomach.localScale.x <= 1.0f)
+                stomach.localScale += new Vector3(0.001f, 0.001f, 0.001f);
 
-                if (transform.GetChild(i).transform.localScale.x > 2.7f)
-                {
-                    GameController.Instance.WinGameController();
-                    Time.timeScale = 0.0f;
-                }
+            if (stomach.localScale.x > 1.0f)
+            {
+                GameController.Instance.WinGameController();
+                Time.timeScale = 0.0f;
             }
         }
     }
@@ -226,7 +255,7 @@ public class Dragon : MonoBehaviour
             canEatSheep = true;
         }
 
-        if (other.gameObject.layer == 12)
+        if (other.gameObject.layer == 13)
         {
             dragonMovementSpeed = 0.0f;
             dragonRotationSpeed = 0.0f;

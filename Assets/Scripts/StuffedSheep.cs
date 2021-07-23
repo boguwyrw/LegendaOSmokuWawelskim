@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StuffedSheep : MonoBehaviour
 {
+    [SerializeField] WawelskiDragon wawelskiDragon;
+
     Rigidbody stuffedSheepRig;
 
     void Start()
@@ -24,7 +26,7 @@ public class StuffedSheep : MonoBehaviour
     {
         if (other.gameObject.layer == 12 && stuffedSheepRig.useGravity == true)
         {
-            other.gameObject.transform.root.GetComponent<Dragon>().sheepEaten = true;
+            wawelskiDragon.sheepEaten = true;
             gameObject.SetActive(false);
         }
     }

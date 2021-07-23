@@ -6,9 +6,10 @@ public class PlayerSkubaMove : MonoBehaviour
 {
     [SerializeField] AudioClip[] movementAudioClips;
 
+    [HideInInspector] public float playerSpeed = 0.0f;
+
     AudioSource audioSource;
     AudioClip currentClip;
-    float playerSpeed = 0.0f;
     float sneakingSpeed = 2.4f;
     float walkingSpeed = 6.0f;
     float runningSpeed = 13.0f;
@@ -157,7 +158,8 @@ public class PlayerSkubaMove : MonoBehaviour
 
     void TurnOffClips()
     {
-        playerSpeed = 0;
+        if (!playerIsSneaking)
+            playerSpeed = 0;
         canPlayClip = false;
         audioSource.Stop();
         clipIsPlaying = false;
