@@ -17522,6 +17522,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!4 &679673999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6792512919770167163, guid: 112146564990eab4f8246e512f4f47f9, type: 3}
+  m_PrefabInstance: {fileID: 6792512919260853243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &692771562 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 42a38a755ae252847a080931aa139d6f, type: 3}
@@ -32322,6 +32327,7 @@ GameObject:
   - component: {fileID: 1881297138}
   - component: {fileID: 1881297140}
   - component: {fileID: 1881297141}
+  - component: {fileID: 1881297142}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -32355,13 +32361,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881297137}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
 --- !u!114 &1881297140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32377,6 +32383,9 @@ MonoBehaviour:
   winText: {fileID: 2057159328}
   gameOverText: {fileID: 556412254}
   exitButton: {fileID: 190481927}
+  melancholyClip: {fileID: 8300000, guid: ebb3d1caab35855488da3a01e6b4a77b, type: 3}
+  medievalClip: {fileID: 8300000, guid: d9e4b3461810500488f61a774fba3438, type: 3}
+  playerSkuba: {fileID: 679673999}
 --- !u!82 &1881297141
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32473,6 +32482,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &1881297142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881297137}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 15, z: 40}
+  m_Center: {x: 0, y: 0, z: 30}
 --- !u!1 &1912807905
 GameObject:
   m_ObjectHideFlags: 0

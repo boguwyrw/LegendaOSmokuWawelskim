@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   - component: {fileID: 705507996}
+  - component: {fileID: 705507997}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -430,7 +431,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ebb3d1caab35855488da3a01e6b4a77b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d9e4b3461810500488f61a774fba3438, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -516,6 +517,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &705507997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36bf517125827347831aa87db2e080a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: ebb3d1caab35855488da3a01e6b4a77b, type: 3}
 --- !u!1 &814504396
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +950,6 @@ GameObject:
   - component: {fileID: 2002774416}
   - component: {fileID: 2002774415}
   - component: {fileID: 2002774414}
-  - component: {fileID: 2002774418}
   m_Layer: 7
   m_Name: Dragon
   m_TagString: Untagged
@@ -1020,18 +1033,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2002774418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002774413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36bf517125827347831aa87db2e080a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2062900208
 GameObject:
   m_ObjectHideFlags: 0

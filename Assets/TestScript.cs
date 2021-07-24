@@ -5,27 +5,28 @@ using UnityEngine.UI;
 
 public class TestScript : MonoBehaviour
 {
-    Collider[] playerInSneakingRange;
-    Collider[] playerInWalkingRange;
-    LayerMask playerLayerMask = 1 << 6;
-    float sneakingRange = 6.0f;
-    float walkingRange = 12.0f;
+    [SerializeField] AudioClip audioClip;
+
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
-        /*
-        playerInSneakingRange = Physics.OverlapSphere(transform.position, sneakingRange, playerLayerMask);
-        playerInWalkingRange = Physics.OverlapSphere(transform.position, walkingRange, playerLayerMask);
-
-        foreach (Collider player in playerInSneakingRange)
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            player.GetComponent<PlayerTest>().EmergencyTestOn();
+            //audioSource.loop = false;
+            audioSource.Stop();
         }
 
-        foreach (Collider player in playerInWalkingRange)
+        if (!audioSource.isPlaying)
         {
-            player.GetComponent<PlayerTest>().EmergencyTestOff();
+            audioSource.clip = audioClip;
+            audioSource.Play();
+            //audioSource.loop = true;
         }
-        */
     }
 }
