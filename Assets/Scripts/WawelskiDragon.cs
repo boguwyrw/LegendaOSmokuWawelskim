@@ -192,7 +192,7 @@ public class WawelskiDragon : MonoBehaviour
         }
 
         if (dragonRoars)
-            transform.Translate(Vector3.forward * dragonMovementSpeed * Time.deltaTime);
+            transform.root.Translate(Vector3.forward * dragonMovementSpeed * Time.deltaTime);
 
         if (!audioSource.isPlaying && dragonRoars)
         {

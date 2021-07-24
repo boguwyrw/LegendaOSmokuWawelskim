@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class IntroductionManager : MonoBehaviour
 {
-    [SerializeField] private Image titleImage;
-    [SerializeField] private GameObject buttonsController;
-    [SerializeField] private Button skipButton;
+    [SerializeField] Image titleImage;
+    [SerializeField] GameObject legendTextPanel;
+    [SerializeField] GameObject buttonsController;
+    [SerializeField] Button skipButton;
+    [SerializeField] AudioClip[] audioClips;
 
-    private AudioSource audioSource;
+    AudioSource audioSource;
+    int clipNumber = 0;
+    bool introPlayed = false;
 
     public static bool isFirstGame = true;
 
@@ -19,13 +23,16 @@ public class IntroductionManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         titleImage.gameObject.SetActive(true);
+        legendTextPanel.SetActive(false);
         buttonsController.SetActive(false);
 
         if (!isFirstGame)
         {
-            audioSource.playOnAwake = false;
+            //audioSource.playOnAwake = false;
             audioSource.Stop();
             titleImage.gameObject.SetActive(false);
+            legendTextPanel.SetActive(false);
+            skipButton.gameObject.SetActive(false);
             buttonsController.SetActive(true);
         }
 
@@ -34,15 +41,43 @@ public class IntroductionManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    void Start()
+    {
+        if (isFirstGame)
+        {
+            PlayClips();
+            clipNumber += 1;
+        }
+            
+    }
+    
     void Update()
     {
-        if (!audioSource.isPlaying)
+        if (isFirstGame)
         {
-            titleImage.gameObject.SetActive(false);
-            buttonsController.SetActive(true);
-        }
+            if (!audioSource.isPlaying && !introPlayed)
+            {
+                titleImage.gameObject.SetActive(false);
+                PlayClips();
+                legendTextPanel.SetActive(true);
+                introPlayed = true;
+            }
+
+            if (!audioSource.isPlaying && introPlayed)
+            {
+                legendTextPanel.SetActive(false);
+                skipButton.gameObject.SetActive(false);
+                buttonsController.SetActive(true);
+            }
+        }   
     }
 
+    void PlayClips()
+    {
+        audioSource.clip = audioClips[clipNumber];
+        audioSource.Play();
+    }
+    
     public void PlayButton()
     {
         isFirstGame = false;
@@ -62,8 +97,10 @@ public class IntroductionManager : MonoBehaviour
 
     public void SkipButton()
     {
+        isFirstGame = false;
         audioSource.Stop();
         titleImage.gameObject.SetActive(false);
+        legendTextPanel.SetActive(false);
         buttonsController.SetActive(true);
         skipButton.gameObject.SetActive(false);
     }
