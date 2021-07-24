@@ -8,13 +8,16 @@ public class King : MonoBehaviour
     [SerializeField] AudioClip firstConversation;
     [SerializeField] AudioClip nextConversation;
     [SerializeField] GameObject kingSpeechPanel;
+    [SerializeField] GameObject promptPanel;
     [SerializeField] Text kingSpeechText;
     [SerializeField] GameObject[] necessaryItems;
 
     AudioSource audioSource;
     bool isFirstConversation = true;
+    bool kingHasBeenVisited = false;
     string firstSpeech = "Poszukaj niezbêdnych rzeczy i zg³adŸ smoka.\nJeœli Ci siê to uda ten skarb i ta korona bêd¹ Twoje.";
     string nextSpeech = "IdŸ, zg³adŸ smoka jak obieca³eœ";
+    float timeToPrompt = 4.0f;
 
     void Start()
     {
@@ -31,6 +34,13 @@ public class King : MonoBehaviour
 
     void Update()
     {
+        timeToPrompt -= Time.deltaTime;
+        if (timeToPrompt <= 0.0f && !kingHasBeenVisited)
+        {
+            timeToPrompt = 0.0f;
+            promptPanel.SetActive(true);
+        }
+
         if (!audioSource.isPlaying)
             kingSpeechPanel.SetActive(false);
     }
@@ -39,6 +49,9 @@ public class King : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
+            kingHasBeenVisited = true;
+            promptPanel.SetActive(false);
+
             if (isFirstConversation)
             {
                 audioSource.clip = firstConversation;
