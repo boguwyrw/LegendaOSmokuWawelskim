@@ -15,6 +15,7 @@ public class PlayerSkubaInteraction : MonoBehaviour
     Dictionary<string, string> helpfulItems = new Dictionary<string, string>();
 
     [HideInInspector] public bool isInPoint = false;
+    [HideInInspector] public string pointedObjectName;
 
     void Start()
     {
@@ -42,8 +43,13 @@ public class PlayerSkubaInteraction : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0.0f));
         RaycastHit raycastHit;
 
+        if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity))
+            pointedObjectName = raycastHit.collider.name;
+
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, itemLayerMask))
         {
+            pointedObjectName = raycastHit.collider.name;
+
             float distanceToItem = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
             if (distanceToItem <= rangeToItem)
             {
@@ -63,6 +69,8 @@ public class PlayerSkubaInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, interactionLayerMask))
         {
+            pointedObjectName = raycastHit.collider.name;
+
             float distanceToInteraction = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
             if (distanceToInteraction <= rangeToItem)
             {
@@ -94,6 +102,8 @@ public class PlayerSkubaInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, stuffLayerMask))
         {
+            pointedObjectName = raycastHit.collider.name;
+
             if (raycastHit.collider.transform.parent != null)
             {
                 float distanceToStuff = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
