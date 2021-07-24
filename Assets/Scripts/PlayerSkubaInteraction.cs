@@ -31,7 +31,8 @@ public class PlayerSkubaInteraction : MonoBehaviour
         helpfulItems.Add("Bonfire", "Palenisko");
         helpfulItems.Add("Grate", "Ruszt");
         helpfulItems.Add("Table", "Stó³");
-        helpfulItems.Add("HotTar(Clone)", "Gor¹ca smo³a");
+        //helpfulItems.Add("HotTar(Clone)", "Gor¹ca smo³a");
+        helpfulItems.Add("HotTar", "Gor¹ca smo³a");
 
         // stuff object
         helpfulItems.Add("PileOfSulphur(Clone)", "Kupa siarki");

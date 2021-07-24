@@ -5,12 +5,22 @@ using UnityEngine;
 public class StuffedSheep : MonoBehaviour
 {
     [SerializeField] WawelskiDragon wawelskiDragon;
+    [SerializeField] PlayerSkubaInteraction playerSkubaInteraction;
+    [SerializeField] GameObject promptPanel;
 
     Rigidbody stuffedSheepRig;
 
     void Start()
     {
         stuffedSheepRig = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name))
+            promptPanel.SetActive(true);
+        else
+            promptPanel.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

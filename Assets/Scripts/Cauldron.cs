@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Cauldron : MonoBehaviour
@@ -9,6 +10,8 @@ public class Cauldron : MonoBehaviour
     [HideInInspector] public bool itemWasPickedUp = false;
 
     [SerializeField] GameObject fire;
+    [SerializeField] GameObject promptPanel;
+    [SerializeField] GameObject glove;
     [SerializeField] PlayerSkubaInteraction playerSkubaInteraction;
 
 
@@ -20,17 +23,15 @@ public class Cauldron : MonoBehaviour
         {
             if (fire.activeSelf)
             {
-                // jak coœ to tu sprawdzac czy mam rekawice
+                if (!itemWasPickedUp && !Inventory.Instance.playerItemsName.Any(item => item.name.Equals(glove.name)))
+                    HelpfulAdvice();
+                else if (Inventory.Instance.playerItemsName.Any(item => item.name.Equals(glove.name)))
+                    itemWasPickedUp = true;
+
                 tarIsHot = true;
                 gameObject.layer = 9;
                 InteractionWithCauldron();
             }
-        }
-
-        if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name))
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-                itemWasPickedUp = true;
         }
     }
 
@@ -44,5 +45,16 @@ public class Cauldron : MonoBehaviour
             gameObject.SetActive(false);
             isOnGrate = false;
         }
+    }
+
+    void HelpfulAdvice()
+    {
+        if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name))
+        {
+            //promptText.text = helpfulSentence;
+            promptPanel.SetActive(true);
+        }
+        else
+            promptPanel.SetActive(false);
     }
 }
