@@ -30,6 +30,7 @@ public class WawelskiDragon : MonoBehaviour
     bool dragonRoars = false;
     bool rangesGOAreVisible = false;
     bool dragonIsDying = false;
+    bool dragonHeardPlayer = false;
     LayerMask playerLayerMask = 1 << 6;
     Collider[] playerInSneakingRange;
     Collider[] playerInWalkingRange;
@@ -117,6 +118,9 @@ public class WawelskiDragon : MonoBehaviour
             }
         }
 
+        if (dragonHeardPlayer)
+            ContactWithDragon();
+
         DragonGoesToRiver();
 
         if (isInRiver)
@@ -152,7 +156,8 @@ public class WawelskiDragon : MonoBehaviour
         {
             if (player.GetComponent<PlayerSkubaMove>().playerSpeed > 0.0f)
             {
-                ContactWithDragon();
+                dragonHeardPlayer = true;
+                //ContactWithDragon();
             }
         }
 
@@ -160,7 +165,8 @@ public class WawelskiDragon : MonoBehaviour
         {
             if (player.GetComponent<PlayerSkubaMove>().playerSpeed > 2.4f)
             {
-                ContactWithDragon();
+                dragonHeardPlayer = true;
+                //ContactWithDragon();
             }
         }
 
@@ -168,7 +174,8 @@ public class WawelskiDragon : MonoBehaviour
         {
             if (player.GetComponent<PlayerSkubaMove>().playerSpeed > 6.0f)
             {
-                ContactWithDragon();
+                dragonHeardPlayer = true;
+                //ContactWithDragon();
             }
         }
     }
@@ -192,10 +199,13 @@ public class WawelskiDragon : MonoBehaviour
         }
 
         if (dragonRoars)
+        {
             transform.root.Translate(Vector3.forward * dragonMovementSpeed * Time.deltaTime);
+        }
 
         if (!audioSource.isPlaying && dragonRoars)
         {
+            dragonHeardPlayer = false;
             Time.timeScale = 0.0f;
             GameController.Instance.LoseGameController();
         }
