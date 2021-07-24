@@ -26430,6 +26430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Glove
       objectReference: {fileID: 0}
+    - target: {fileID: 4573614133313904160, guid: 332a0b615f26f3c479fc0789b559ddff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4573614133313904164, guid: 332a0b615f26f3c479fc0789b559ddff, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -26516,6 +26520,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332a0b615f26f3c479fc0789b559ddff, type: 3}
+--- !u!1 &1588303758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4573614133313904160, guid: 332a0b615f26f3c479fc0789b559ddff, type: 3}
+  m_PrefabInstance: {fileID: 1588303757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1594573866
 GameObject:
   m_ObjectHideFlags: 0
@@ -31573,6 +31582,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cauldron
       objectReference: {fileID: 0}
+    - target: {fileID: 2122093694034352441, guid: 3232f51040f31cf4483998115171523a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3924248378957671060, guid: 3232f51040f31cf4483998115171523a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -31754,8 +31767,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sulphur
       objectReference: {fileID: 0}
+    - target: {fileID: 3215234789975003260, guid: b10e716d0cd50da4e858b2594fc88854, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10e716d0cd50da4e858b2594fc88854, type: 3}
+--- !u!1 &1715247306 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3215234789975003260, guid: b10e716d0cd50da4e858b2594fc88854, type: 3}
+  m_PrefabInstance: {fileID: 1715247305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1728164145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34883,6 +34905,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstConversation: {fileID: 8300000, guid: 10ab4f0503d2de74692bf6b3e1170f36, type: 3}
   nextConversation: {fileID: 8300000, guid: c228777155365b64198eb7b17d81ff6d, type: 3}
+  necessaryItems:
+  - {fileID: 1588303758}
+  - {fileID: 478044376}
+  - {fileID: 919132147619858732}
+  - {fileID: 9204815666535905128}
+  - {fileID: 1715247306}
 --- !u!82 &2581470217589048781
 AudioSource:
   m_ObjectHideFlags: 0
@@ -37759,6 +37787,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SheepSkin
       objectReference: {fileID: 0}
+    - target: {fileID: 8560382085561456739, guid: 90dad611abc8ade4b9ca5acef0d0bcb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8560382085561456767, guid: 90dad611abc8ade4b9ca5acef0d0bcb8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -38012,6 +38044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Firesteel
       objectReference: {fileID: 0}
+    - target: {fileID: 8322505626734247402, guid: 2e2a162f607dcdb4fa112f282d8e2fd6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8322505626734247414, guid: 2e2a162f607dcdb4fa112f282d8e2fd6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -38098,3 +38134,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e2a162f607dcdb4fa112f282d8e2fd6, type: 3}
+--- !u!1 &9204815666535905128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8322505626734247402, guid: 2e2a162f607dcdb4fa112f282d8e2fd6, type: 3}
+  m_PrefabInstance: {fileID: 9204815666535905127}
+  m_PrefabAsset: {fileID: 0}

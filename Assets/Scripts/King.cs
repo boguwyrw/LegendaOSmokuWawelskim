@@ -6,6 +6,7 @@ public class King : MonoBehaviour
 {
     [SerializeField] AudioClip firstConversation;
     [SerializeField] AudioClip nextConversation;
+    [SerializeField] GameObject[] necessaryItems;
 
     AudioSource audioSource;
     bool isFirstConversation = true;
@@ -13,6 +14,11 @@ public class King : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        for (int i = 0; i < necessaryItems.Length; i++)
+        {
+            necessaryItems[i].SetActive(false);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -23,6 +29,10 @@ public class King : MonoBehaviour
             {
                 audioSource.clip = firstConversation;
                 audioSource.Play();
+                for (int j = 0; j < necessaryItems.Length; j++)
+                {
+                    necessaryItems[j].SetActive(true);
+                }
                 isFirstConversation = false;
             }
             else
