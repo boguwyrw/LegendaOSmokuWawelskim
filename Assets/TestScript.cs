@@ -19,7 +19,7 @@ public class TestScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             //audioSource.loop = false;
-            audioSource.Stop();
+            //audioSource.Stop();
         }
 
         if (!audioSource.isPlaying)

@@ -17,8 +17,8 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] Text winText;
-    [SerializeField] Text gameOverText;
+    [SerializeField] GameObject winTextPanel;
+    [SerializeField] GameObject gameOverTextPanel;
     [SerializeField] Button exitButton;
     [SerializeField] AudioClip melancholyClip;
     [SerializeField] AudioClip medievalClip;
@@ -39,13 +39,13 @@ public class GameController : MonoBehaviour
 
     public void WinGameController()
     {
-        winText.gameObject.SetActive(true);
+        winTextPanel.SetActive(true);
         exitButton.gameObject.SetActive(true);
     }
 
     public void LoseGameController()
     {
-        gameOverText.gameObject.SetActive(true);
+        gameOverTextPanel.SetActive(true);
         exitButton.gameObject.SetActive(true);
     }
 

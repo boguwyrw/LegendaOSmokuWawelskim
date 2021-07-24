@@ -15,6 +15,7 @@ public class WawelskiDragon : MonoBehaviour
     [SerializeField] GameObject runningRangeGO;
     [SerializeField] AudioClip dragonEating;
     [SerializeField] Text cautionInfoText;
+    [SerializeField] DragonFlame dragonFlame;
 
     [HideInInspector] public bool sheepEaten = false;
     [HideInInspector] public bool reachedSafePoint = false;
@@ -87,6 +88,7 @@ public class WawelskiDragon : MonoBehaviour
             {
                 if (!dragonRoars)
                 {
+                    dragonFlame.StartFireFlame();
                     audioSource.Play();
                     dragonRoars = true;
                 }
@@ -155,28 +157,19 @@ public class WawelskiDragon : MonoBehaviour
         foreach (Collider player in playerInSneakingRange)
         {
             if (player.GetComponent<PlayerSkubaMove>().playerSpeed > 0.0f)
-            {
                 dragonHeardPlayer = true;
-                //ContactWithDragon();
-            }
         }
 
         foreach (Collider player in playerInWalkingRange)
         {
             if (player.GetComponent<PlayerSkubaMove>().playerSpeed > 2.4f)
-            {
                 dragonHeardPlayer = true;
-                //ContactWithDragon();
-            }
         }
 
         foreach (Collider player in playerInRunningRange)
         {
             if (player.GetComponent<PlayerSkubaMove>().playerSpeed > 6.0f)
-            {
                 dragonHeardPlayer = true;
-                //ContactWithDragon();
-            }
         }
     }
 
@@ -194,6 +187,7 @@ public class WawelskiDragon : MonoBehaviour
     {
         if (!dragonRoars)
         {
+            dragonFlame.StartFireFlame();
             audioSource.Play();
             dragonRoars = true;
         }

@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &160787956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,6 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: ebb3d1caab35855488da3a01e6b4a77b, type: 3}
+  dragonFlame: {fileID: 1615188517}
 --- !u!1 &814504396
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +566,7 @@ Camera:
   m_GameObject: {fileID: 814504396}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -606,13 +607,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814504396}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -200}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1382592794
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +704,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382592794}
   m_CullTransparentMesh: 1
+--- !u!198 &1615188517 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 557648516275550334, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+  m_PrefabInstance: {fileID: 557648514669439579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1720357296
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1881718094
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -956,7 +962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &2002774414
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1108,6 +1114,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062900208}
   m_CullTransparentMesh: 1
+--- !u!1001 &557648514669439579
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369355, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 557648514514369364, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
+      propertyPath: m_Name
+      value: DragonFlame
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc8055d6af5a21e4a8d568e899936839, type: 3}
 --- !u!1001 &3350453442818325814
 PrefabInstance:
   m_ObjectHideFlags: 0
