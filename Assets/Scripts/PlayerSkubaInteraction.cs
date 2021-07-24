@@ -1,15 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSkubaInteraction : MonoBehaviour
 {
+    [SerializeField] GameObject itemNamePanel;
+    [SerializeField] Text itemNameText;
+
     int itemLayerMask = 1 << 8;
     int interactionLayerMask = 1 << 9;
     int stuffLayerMask = 1 << 10;
-    float rangeToItem = 5.4f;
+    float rangeToItem = 4.8f;
+    Dictionary<string, string> helpfulItems = new Dictionary<string, string>();
 
     [HideInInspector] public bool isInPoint = false;
+
+    void Start()
+    {
+        // items objects
+        helpfulItems.Add("Glove", "Rêkawica");
+        helpfulItems.Add("Cauldron", "Kocio³ek ze smo³¹");
+        helpfulItems.Add("SheepSkin", "Skóra owcy");
+        helpfulItems.Add("Firesteel", "Krzesiwo");
+        helpfulItems.Add("Sulphur", "Worek z siark¹");
+        helpfulItems.Add("StuffedSheep", "Wypchana owca");
+
+        // interaction objects
+        helpfulItems.Add("Bonfire", "Palenisko");
+        helpfulItems.Add("Grate", "Ruszt");
+        helpfulItems.Add("Table", "Stó³");
+        helpfulItems.Add("HotTar(Clone)", "Gor¹ca smo³a");
+
+        // stuff object
+        helpfulItems.Add("PileOfSulphur(Clone)", "Kupa siarki");
+
+    }
 
     void FixedUpdate()
     {
@@ -19,11 +45,20 @@ public class PlayerSkubaInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, itemLayerMask))
         {
             float distanceToItem = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
-            if (distanceToItem <= rangeToItem && Input.GetKeyDown(KeyCode.F))
+            if (distanceToItem <= rangeToItem)
             {
-                Inventory.Instance.AddItemToInventory(raycastHit.collider.gameObject);
-                raycastHit.collider.gameObject.SetActive(false);
+                HelpfulObjectsRecognition(raycastHit.collider.name);
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    Inventory.Instance.AddItemToInventory(raycastHit.collider.gameObject);
+                    raycastHit.collider.gameObject.SetActive(false);
+                }
             }
+        }
+        else
+        {
+            itemNamePanel.SetActive(false);
         }
 
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, interactionLayerMask))
@@ -31,6 +66,8 @@ public class PlayerSkubaInteraction : MonoBehaviour
             float distanceToInteraction = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
             if (distanceToInteraction <= rangeToItem)
             {
+                HelpfulObjectsRecognition(raycastHit.collider.name);
+
                 int listLength = Inventory.Instance.playerItemsName.Count;
                 for (int i = 0; i < listLength; i++)
                 {
@@ -59,14 +96,19 @@ public class PlayerSkubaInteraction : MonoBehaviour
         {
             if (raycastHit.collider.transform.parent != null)
             {
-                if (Input.GetKeyDown(KeyCode.F))
+                float distanceToStuff = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
+                if (distanceToStuff <= rangeToItem)
                 {
-                    Inventory.Instance.sheepToStuffGO.SetActive(false);
-                    Inventory.Instance.stuffedSheepGO.SetActive(true);
+                    HelpfulObjectsRecognition(raycastHit.collider.name);
 
-                }
-            }
-                
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        Inventory.Instance.sheepToStuffGO.SetActive(false);
+                        Inventory.Instance.stuffedSheepGO.SetActive(true);
+
+                    }
+                }   
+            }   
         }
 
         if (isInPoint)
@@ -86,6 +128,18 @@ public class PlayerSkubaInteraction : MonoBehaviour
                             Inventory.Instance.inventoryIcons[j].sprite = null;
                     }
                 }
+            }
+        }
+    }
+
+    void HelpfulObjectsRecognition(string objectName)
+    {
+        foreach (KeyValuePair<string, string> item in helpfulItems)
+        {
+            if (item.Key.Equals(objectName))
+            {
+                itemNamePanel.SetActive(true);
+                itemNameText.text = item.Value;
             }
         }
     }
