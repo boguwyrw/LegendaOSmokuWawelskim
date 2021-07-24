@@ -13,17 +13,21 @@ public class Cauldron : MonoBehaviour
 
     void Update()
     {
-        if (isOnGrate && fire.activeSelf)
+        if (isOnGrate)
         {
-            tarIsHot = true;
-            InteractionWithCauldron();
+            if (fire.activeSelf)
+            {
+                tarIsHot = true;
+                gameObject.layer = 9;
+                InteractionWithCauldron();
+            }
         }
     }
 
     void InteractionWithCauldron()
     {
         startInteraction = GetComponent<Interaction>().objectCanInteract;
-        if (startInteraction)
+        if (startInteraction && gameObject.layer == 9)
         {
             gameObject.layer = 8;
             Inventory.Instance.AddItemToInventory(gameObject);
