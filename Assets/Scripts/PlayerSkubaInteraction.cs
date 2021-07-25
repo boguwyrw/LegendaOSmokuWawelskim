@@ -31,7 +31,6 @@ public class PlayerSkubaInteraction : MonoBehaviour
         helpfulItems.Add("Bonfire", "Palenisko");
         helpfulItems.Add("Grate", "Ruszt");
         helpfulItems.Add("Table", "Stó³");
-        //helpfulItems.Add("HotTar(Clone)", "Gor¹ca smo³a");
         helpfulItems.Add("HotTar", "Gor¹ca smo³a");
 
         // stuff object
@@ -49,11 +48,11 @@ public class PlayerSkubaInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, itemLayerMask))
         {
-            pointedObjectName = raycastHit.collider.name;
-
             float distanceToItem = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
             if (distanceToItem <= rangeToItem)
             {
+                pointedObjectName = raycastHit.collider.name;
+
                 HelpfulObjectsRecognition(raycastHit.collider.name);
 
                 if (Input.GetKeyDown(KeyCode.F))
@@ -70,11 +69,11 @@ public class PlayerSkubaInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, interactionLayerMask))
         {
-            pointedObjectName = raycastHit.collider.name;
-
             float distanceToInteraction = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
             if (distanceToInteraction <= rangeToItem)
             {
+                pointedObjectName = raycastHit.collider.name;
+
                 HelpfulObjectsRecognition(raycastHit.collider.name);
 
                 int listLength = Inventory.Instance.playerItemsName.Count;
@@ -103,13 +102,13 @@ public class PlayerSkubaInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, stuffLayerMask))
         {
-            pointedObjectName = raycastHit.collider.name;
-
             if (raycastHit.collider.transform.parent != null)
             {
                 float distanceToStuff = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
                 if (distanceToStuff <= rangeToItem)
                 {
+                    pointedObjectName = raycastHit.collider.name;
+
                     HelpfulObjectsRecognition(raycastHit.collider.name);
 
                     if (Input.GetKeyDown(KeyCode.F))

@@ -13,7 +13,6 @@ public class Grate : MonoBehaviour
     bool startInteraction = false;
     bool cauldronOnGrate = false;
     bool itemWasPickedUp = false;
-    //string helpfulSentence = "Dobrze bêdzie rozgrzaæ smo³ê";
 
     void Update()
     {
@@ -31,7 +30,6 @@ public class Grate : MonoBehaviour
                 Vector3 positionOnTable = new Vector3(GetComponent<Interaction>().objectPosition.x, GetComponent<Interaction>().objectPosition.y + 1.57f, GetComponent<Interaction>().objectPosition.z);
                 cauldronGO.SetActive(true);
                 cauldronGO.transform.position = positionOnTable;
-                //cauldronGO.layer = 9;
                 cauldronGO.GetComponent<Cauldron>().isOnGrate = true;
                 cauldronOnGrate = true;
             }
@@ -42,7 +40,6 @@ public class Grate : MonoBehaviour
     {
         if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name))
         {
-            //promptText.text = helpfulSentence;
             promptPanel.SetActive(true);
         }
         else

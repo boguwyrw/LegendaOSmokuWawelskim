@@ -10,11 +10,9 @@ public class Bonfire : MonoBehaviour
     [SerializeField] GameObject promptPanel;
     [SerializeField] GameObject firesteel;
     [SerializeField] PlayerSkubaInteraction playerSkubaInteraction;
-    //[SerializeField] Text promptText;
 
     bool startInteraction = false;
     bool itemWasPickedUp = false;
-    //string helpfulSentence = "Potrzebujê krzesiwa aby rozpaliæ ogieñ";
 
     void Start()
     {
@@ -38,7 +36,6 @@ public class Bonfire : MonoBehaviour
     {
         if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name))
         {
-            //promptText.text = helpfulSentence;
             promptPanel.SetActive(true);
         }
         else

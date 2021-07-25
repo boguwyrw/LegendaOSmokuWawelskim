@@ -10,11 +10,9 @@ public class Table : MonoBehaviour
     [SerializeField] GameObject promptPanel;
     [SerializeField] GameObject sheepSkin;
     [SerializeField] PlayerSkubaInteraction playerSkubaInteraction;
-    //[SerializeField] Text promptText;
 
     bool startInteraction = false;
     bool itemWasPickedUp = false;
-    //string helpfulSentence = "Hmmm ... Muszê poszukaæ skóry owcy";
 
     void Update()
     {
@@ -39,7 +37,6 @@ public class Table : MonoBehaviour
     {
         if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name))
         {
-            //promptText.text = helpfulSentence;
             promptPanel.SetActive(true);
         }
         else

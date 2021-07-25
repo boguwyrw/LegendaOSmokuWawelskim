@@ -5,6 +5,7 @@ using UnityEngine;
 public class PromptSoundController : MonoBehaviour
 {
     AudioSource audioSource;
+    bool soundWasPlayed = false;
 
     void Start()
     {
@@ -13,7 +14,13 @@ public class PromptSoundController : MonoBehaviour
 
     void Update()
     {
-        if (!audioSource.isPlaying && transform.GetChild(0).gameObject.activeSelf)
+        if (!audioSource.isPlaying && transform.GetChild(0).gameObject.activeSelf && !soundWasPlayed)
+        {
             audioSource.PlayOneShot(audioSource.clip);
+            soundWasPlayed = true;
+        }
+
+        if (!transform.GetChild(0).gameObject.activeSelf)
+            soundWasPlayed = false;
     }
 }

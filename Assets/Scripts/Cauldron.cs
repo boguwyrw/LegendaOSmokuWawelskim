@@ -51,7 +51,6 @@ public class Cauldron : MonoBehaviour
     {
         if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name))
         {
-            //promptText.text = helpfulSentence;
             promptPanel.SetActive(true);
         }
         else

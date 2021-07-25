@@ -19,22 +19,39 @@ public class GameController : MonoBehaviour
 
     [SerializeField] GameObject winTextPanel;
     [SerializeField] GameObject gameOverTextPanel;
+    [SerializeField] GameObject mainLightGO;
     [SerializeField] Button exitButton;
     [SerializeField] AudioClip melancholyClip;
     [SerializeField] AudioClip medievalClip;
 
+    Light mainLight;
     AudioSource audioSource;
     Vector3 sideDirecion;
+    float lightValue = 230.0f;
+    float lightRate = 0.01f;
+    float dayNightTime = 0.0f;
+    float dayNightValue = 12.0f;
+    float multiplier = 0.0035f;
+    float permanentValue = 0.2f;
+    float exposureValue = 0.0f;
+    bool nightIsComming = false;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        mainLight = mainLightGO.GetComponent<Light>();
+        mainLight.color = new Color32((byte)lightValue, (byte)lightValue, (byte)lightValue, 255);
+        dayNightTime = dayNightValue;
+        SkyDayNightController();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+
+        NightDaySystem();
+        SkyDayNightController();
     }
 
     public void WinGameController()
@@ -52,6 +69,48 @@ public class GameController : MonoBehaviour
     public void ExitButton()
     {
         SceneManager.LoadScene("IntroductionScene");
+    }
+
+    void NightDaySystem()
+    {
+        if (dayNightTime > 0 && lightValue > 0)
+            dayNightTime -= Time.deltaTime;
+
+        if (lightValue > 0 && !nightIsComming && dayNightTime <= 0.0f)
+        {
+            lightValue -= lightRate;
+        }
+        else if (lightValue < 0.0f)
+        {
+            lightValue = 0.0f;
+            dayNightTime = dayNightValue;
+        }
+
+        if (lightValue == 0.0f && dayNightTime > 0)
+        {
+            nightIsComming = true;
+            dayNightTime -= Time.deltaTime;
+        }
+        
+        if (dayNightTime <= 0.0f && nightIsComming)
+        {
+            lightValue += lightRate;
+        }
+
+        if (lightValue > 230.0f)
+        {
+            lightValue = 230.0f;
+            nightIsComming = false;
+            dayNightTime = dayNightValue;
+        }
+
+        mainLight.color = new Color32((byte)lightValue, (byte)lightValue, (byte)lightValue, 255);
+    }
+
+    void SkyDayNightController()
+    {
+        exposureValue = permanentValue + multiplier * lightValue;
+        RenderSettings.skybox.SetFloat("_Exposure", exposureValue);
     }
 
     void OnTriggerExit(Collider other)
