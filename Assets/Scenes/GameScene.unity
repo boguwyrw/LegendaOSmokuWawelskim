@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45703292, g: 0.79903835, b: 0.880783, a: 1}
+  m_IndirectSpecularColor: {r: 0.3826071, g: 0.6700942, b: 0.73866117, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,7 +171,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d8dcfaea10bc53740880d649519f6124, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 29ab41bd8dc2013459a3f8b4b2ab0526, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -9351,6 +9351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637671921}
   - component: {fileID: 637671922}
+  - component: {fileID: 637671923}
   m_Layer: 5
   m_Name: HotTarPrompt
   m_TagString: Untagged
@@ -9474,6 +9475,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &637671923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637671920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca95f6bcc425fd74182057dffa1f1dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &651578266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11488,7 +11501,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "AAAA. GOR\u0104CE!!! Przyda si\u0119 jaka\u015B r\u0119kawica."
+  m_Text: "AAAA. GOR\u0104CE!!! Przyda\u0142aby si\u0119 jaka\u015B r\u0119kawica."
 --- !u!222 &949777343
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21866,7 +21879,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Jeszcze tylko siarka i mo\u017Cna zszywa\u0107."
+  m_Text: "Jeszcze siarka i mo\u017Cna zszywa\u0107."
 --- !u!222 &1936516153
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23388,6 +23401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wawelskiDragon: {fileID: 7331870506055040834}
   playerSkubaInteraction: {fileID: 1359812362}
+  leaveSheepInPoint: {fileID: 2082266712}
   promptPanel: {fileID: 205383664}
 --- !u!1 &919132147619858732 stripped
 GameObject:

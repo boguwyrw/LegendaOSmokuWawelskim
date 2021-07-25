@@ -17,7 +17,7 @@ public class King : MonoBehaviour
     bool kingHasBeenVisited = false;
     string firstSpeech = "Poszukaj niezbêdnych rzeczy i zg³adŸ smoka.\nJeœli Ci siê to uda ten skarb i ta korona bêd¹ Twoje.";
     string nextSpeech = "IdŸ, zg³adŸ smoka jak obieca³eœ";
-    float timeToPrompt = 12.0f;
+    float timeToPrompt = 15.0f;
 
     void Start()
     {

@@ -5,5 +5,4 @@ public class InteractionObject : ScriptableObject
 {
     public string objectName;
     public string requireObjectName;
-    //public bool canInteract;
 }

@@ -6,6 +6,7 @@ public class StuffedSheep : MonoBehaviour
 {
     [SerializeField] WawelskiDragon wawelskiDragon;
     [SerializeField] PlayerSkubaInteraction playerSkubaInteraction;
+    [SerializeField] LeaveSheepInPoint leaveSheepInPoint;
     [SerializeField] GameObject promptPanel;
 
     Rigidbody stuffedSheepRig;
@@ -17,7 +18,7 @@ public class StuffedSheep : MonoBehaviour
 
     void Update()
     {
-        if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name))
+        if (playerSkubaInteraction.pointedObjectName.Equals(gameObject.name) && !leaveSheepInPoint.sheepIsOnPlace)
             promptPanel.SetActive(true);
         else
             promptPanel.SetActive(false);

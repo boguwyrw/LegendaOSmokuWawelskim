@@ -28,7 +28,6 @@ public class IntroductionManager : MonoBehaviour
 
         if (!isFirstGame)
         {
-            //audioSource.playOnAwake = false;
             audioSource.Stop();
             titleImage.gameObject.SetActive(false);
             legendTextPanel.SetActive(false);
