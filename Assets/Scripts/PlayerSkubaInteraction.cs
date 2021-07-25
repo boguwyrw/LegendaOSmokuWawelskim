@@ -43,10 +43,13 @@ public class PlayerSkubaInteraction : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0.0f));
         RaycastHit raycastHit;
 
-        if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out raycastHit))
+        {
             pointedObjectName = raycastHit.collider.name;
+            itemNamePanel.SetActive(false);
+        }
 
-        if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, itemLayerMask))
+        if (Physics.Raycast(ray, out raycastHit, itemLayerMask))
         {
             float distanceToItem = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
             if (distanceToItem <= rangeToItem)
@@ -62,12 +65,9 @@ public class PlayerSkubaInteraction : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            itemNamePanel.SetActive(false);
-        }
 
-        if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, interactionLayerMask))
+        //if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, interactionLayerMask))
+        if (Physics.Raycast(ray, out raycastHit, interactionLayerMask))
         {
             float distanceToInteraction = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
             if (distanceToInteraction <= rangeToItem)
@@ -100,7 +100,8 @@ public class PlayerSkubaInteraction : MonoBehaviour
             }   
         }
 
-        if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, stuffLayerMask))
+        //if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, stuffLayerMask))
+        if (Physics.Raycast(ray, out raycastHit, stuffLayerMask))
         {
             if (raycastHit.collider.transform.parent != null)
             {
