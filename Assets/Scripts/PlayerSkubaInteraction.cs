@@ -49,10 +49,11 @@ public class PlayerSkubaInteraction : MonoBehaviour
             itemNamePanel.SetActive(false);
         }
 
-        if (Physics.Raycast(ray, out raycastHit, itemLayerMask))
+        //if (Physics.Raycast(ray, out raycastHit, itemLayerMask))
+        if (Physics.Raycast(ray, out raycastHit))
         {
             float distanceToItem = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
-            if (distanceToItem <= rangeToItem)
+            if (distanceToItem <= rangeToItem && raycastHit.collider.gameObject.layer == 8)
             {
                 pointedObjectName = raycastHit.collider.name;
 
@@ -66,11 +67,11 @@ public class PlayerSkubaInteraction : MonoBehaviour
             }
         }
 
-        //if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, interactionLayerMask))
-        if (Physics.Raycast(ray, out raycastHit, interactionLayerMask))
+        //if (Physics.Raycast(ray, out raycastHit, interactionLayerMask))
+        if (Physics.Raycast(ray, out raycastHit))
         {
             float distanceToInteraction = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
-            if (distanceToInteraction <= rangeToItem)
+            if (distanceToInteraction <= rangeToItem && raycastHit.collider.gameObject.layer == 9)
             {
                 pointedObjectName = raycastHit.collider.name;
 
@@ -100,13 +101,13 @@ public class PlayerSkubaInteraction : MonoBehaviour
             }   
         }
 
-        //if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, stuffLayerMask))
-        if (Physics.Raycast(ray, out raycastHit, stuffLayerMask))
+        //if (Physics.Raycast(ray, out raycastHit, stuffLayerMask))
+        if (Physics.Raycast(ray, out raycastHit))
         {
             if (raycastHit.collider.transform.parent != null)
             {
                 float distanceToStuff = Vector3.Distance(raycastHit.collider.transform.position, transform.position);
-                if (distanceToStuff <= rangeToItem)
+                if (distanceToStuff <= rangeToItem && raycastHit.collider.gameObject.layer == 10)
                 {
                     pointedObjectName = raycastHit.collider.name;
 
