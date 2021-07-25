@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31086206, g: 0.5456903, b: 0.6015014, a: 1}
+  m_IndirectSpecularColor: {r: 0.47577888, g: 0.8315342, b: 0.9166201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9635,7 +9635,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Potrzebuj\u0119 krzesiwa aby rozpali\u0107 ogie\u0144."
+  m_Text: "Potrzebuj\u0119 krzesiwa, \u017Ceby rozpali\u0107 ogie\u0144."
 --- !u!222 &654177248
 CanvasRenderer:
   m_ObjectHideFlags: 0
