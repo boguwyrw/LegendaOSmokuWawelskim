@@ -30,7 +30,6 @@ public class Cauldron : MonoBehaviour
                     itemWasPickedUp = true;
 
                 tarIsHot = true;
-                //gameObject.layer = 9;
                 InteractionWithCauldron();
             }
         }

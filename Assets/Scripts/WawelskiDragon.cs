@@ -13,6 +13,7 @@ public class WawelskiDragon : MonoBehaviour
     [SerializeField] GameObject sneakingRangeGO;
     [SerializeField] GameObject walkingRangeGO;
     [SerializeField] GameObject runningRangeGO;
+    [SerializeField] GameObject pointToHideGO;
     [SerializeField] AudioClip dragonEating;
     [SerializeField] Text cautionInfoText;
     [SerializeField] DragonFlame dragonFlame;
@@ -32,7 +33,6 @@ public class WawelskiDragon : MonoBehaviour
     bool rangesGOAreVisible = false;
     bool dragonIsDying = false;
     bool dragonHeardPlayer = false;
-    bool actionWasMade = false;
     LayerMask playerLayerMask = 1 << 6;
     Collider[] playerInSneakingRange;
     Collider[] playerInWalkingRange;
@@ -87,18 +87,9 @@ public class WawelskiDragon : MonoBehaviour
             {
                 DragonMovement(leaveSheep.gameObject.transform.position);
             }
-            /*
-            else if (!dragonRoars && !reachedSafePoint && !actionWasMade)
-            {
-                Debug.Log("reachedSafePoint - false");
-                dragonFlame.StartFireFlame();
-                audioSource.Play();
-                dragonRoars = true;
-                actionWasMade = true;
-            }
-            */
             else
             {
+                pointToHideGO.SetActive(false);
                 if (!dragonRoars)
                 {
                     dragonFlame.StartFireFlame();
