@@ -44,7 +44,10 @@ public class King : MonoBehaviour
         }
 
         if (!audioSource.isPlaying)
+        {
             kingSpeechPanel.SetActive(false);
+            kingSpeechPanel.SetActive(false);
+        }
     }
 
     void OnTriggerEnter(Collider other)
