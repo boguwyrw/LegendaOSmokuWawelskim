@@ -83,12 +83,20 @@ public class WawelskiDragon : MonoBehaviour
 
         if (reachedCaveEnterPoint && !sheepEaten)
         {
-            if (reachedSafePoint && !actionWasMade)
+            if (reachedSafePoint)
             {
-                actionWasMade = true;
                 DragonMovement(leaveSheep.gameObject.transform.position);
             }
             /*
+            else if (!dragonRoars && !reachedSafePoint && !actionWasMade)
+            {
+                Debug.Log("reachedSafePoint - false");
+                dragonFlame.StartFireFlame();
+                audioSource.Play();
+                dragonRoars = true;
+                actionWasMade = true;
+            }
+            */
             else
             {
                 if (!dragonRoars)
@@ -103,14 +111,6 @@ public class WawelskiDragon : MonoBehaviour
                     Time.timeScale = 0.0f;
                     GameController.Instance.LoseGameController();
                 }
-            }
-            */
-            if (!dragonRoars && !reachedSafePoint && !actionWasMade)
-            {
-                actionWasMade = true;
-                dragonFlame.StartFireFlame();
-                audioSource.Play();
-                dragonRoars = true;
             }
 
             if (!audioSource.isPlaying && dragonRoars)

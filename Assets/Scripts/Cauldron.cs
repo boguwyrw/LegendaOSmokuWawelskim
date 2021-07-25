@@ -21,6 +21,7 @@ public class Cauldron : MonoBehaviour
     {
         if (isOnGrate)
         {
+            gameObject.layer = 9;
             if (fire.activeSelf)
             {
                 if (!itemWasPickedUp && !Inventory.Instance.playerItemsName.Any(item => item.name.Equals(glove.name)))
@@ -29,7 +30,7 @@ public class Cauldron : MonoBehaviour
                     itemWasPickedUp = true;
 
                 tarIsHot = true;
-                gameObject.layer = 9;
+                //gameObject.layer = 9;
                 InteractionWithCauldron();
             }
         }

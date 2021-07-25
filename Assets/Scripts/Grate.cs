@@ -34,6 +34,14 @@ public class Grate : MonoBehaviour
                 cauldronOnGrate = true;
             }
         }
+        /*
+        else
+        {
+            cauldronOnGrate = false;
+            itemWasPickedUp = false;
+            cauldronGO.SetActive(false);
+        }
+        */
     }
 
     void HelpfulAdvice()
