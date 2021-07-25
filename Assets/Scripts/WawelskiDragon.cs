@@ -32,6 +32,7 @@ public class WawelskiDragon : MonoBehaviour
     bool rangesGOAreVisible = false;
     bool dragonIsDying = false;
     bool dragonHeardPlayer = false;
+    bool actionWasMade = false;
     LayerMask playerLayerMask = 1 << 6;
     Collider[] playerInSneakingRange;
     Collider[] playerInWalkingRange;
@@ -82,8 +83,12 @@ public class WawelskiDragon : MonoBehaviour
 
         if (reachedCaveEnterPoint && !sheepEaten)
         {
-            if (reachedSafePoint)
+            if (reachedSafePoint && !actionWasMade)
+            {
+                actionWasMade = true;
                 DragonMovement(leaveSheep.gameObject.transform.position);
+            }
+            /*
             else
             {
                 if (!dragonRoars)
@@ -98,6 +103,20 @@ public class WawelskiDragon : MonoBehaviour
                     Time.timeScale = 0.0f;
                     GameController.Instance.LoseGameController();
                 }
+            }
+            */
+            if (!dragonRoars && !reachedSafePoint && !actionWasMade)
+            {
+                actionWasMade = true;
+                dragonFlame.StartFireFlame();
+                audioSource.Play();
+                dragonRoars = true;
+            }
+
+            if (!audioSource.isPlaying && dragonRoars)
+            {
+                Time.timeScale = 0.0f;
+                GameController.Instance.LoseGameController();
             }
         }
 
