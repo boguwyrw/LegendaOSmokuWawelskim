@@ -21,6 +21,9 @@ public class PromptSoundController : MonoBehaviour
         }
 
         if (!transform.GetChild(0).gameObject.activeSelf)
+        {
+            audioSource.Stop();
             soundWasPlayed = false;
+        }
     }
 }
